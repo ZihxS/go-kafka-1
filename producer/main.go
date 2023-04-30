@@ -26,7 +26,7 @@ func produce(wg *sync.WaitGroup, producer *kafka.Producer, topic string, delay t
 	}
 }
 
-func running() {
+func run() {
 	var wg sync.WaitGroup
 
 	kafkaConfigMap := &kafka.ConfigMap{
@@ -69,7 +69,7 @@ func main() {
 	signal.Notify(exitChan, os.Interrupt, syscall.SIGTERM, syscall.SIGINT)
 
 	go func() {
-		running()
+		run()
 	}()
 
 	<-exitChan

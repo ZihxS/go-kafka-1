@@ -1,4 +1,4 @@
-module github.com/ZihxS/go-kafka
+module github.com/ZihxS/kafka-go-1
 
 go 1.19
 

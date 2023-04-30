@@ -10,7 +10,7 @@ import (
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 )
 
-func running() {
+func run() {
 	hostname, _ := os.Hostname()
 
 	kafkaConfigMap := &kafka.ConfigMap{
@@ -53,7 +53,7 @@ func main() {
 	signal.Notify(exitChan, os.Interrupt, syscall.SIGTERM, syscall.SIGINT)
 
 	go func() {
-		running()
+		run()
 	}()
 
 	<-exitChan
