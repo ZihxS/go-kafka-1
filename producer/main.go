@@ -58,7 +58,7 @@ func run() {
 
 	for i := min; i <= max; i++ {
 		wg.Add(1)
-		go produce(&wg, producer, fmt.Sprintf("go-kafka-1-topic-%v", i), ((time.Second / 4) * time.Duration(i)), ((max+1)*50)-(min*i))
+		go produce(&wg, producer, fmt.Sprintf("go-kafka-1-topic-%v", i), ((time.Second / 4) * time.Duration(i)), ((max+1)*50)-(15*i))
 	}
 
 	wg.Wait()
