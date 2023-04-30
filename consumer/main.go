@@ -15,7 +15,7 @@ func run() {
 
 	kafkaConfigMap := &kafka.ConfigMap{
 		"bootstrap.servers":    "localhost",
-		"group.id":             "kafka-go-1",
+		"group.id":             "go-kafka-1",
 		"client.id":            hostname,
 		"auto.offset.reset":    "earliest",
 		"max.poll.interval.ms": 300000 * 10,
@@ -28,11 +28,11 @@ func run() {
 	}
 
 	topics := []string{
-		"kafka-go-1-topic-1",
-		"kafka-go-1-topic-2",
-		"kafka-go-1-topic-3",
-		"kafka-go-1-topic-4",
-		"kafka-go-1-topic-5",
+		"go-kafka-1-topic-1",
+		"go-kafka-1-topic-2",
+		"go-kafka-1-topic-3",
+		"go-kafka-1-topic-4",
+		"go-kafka-1-topic-5",
 	}
 
 	consumer.SubscribeTopics(topics, nil)
