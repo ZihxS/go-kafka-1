@@ -41,9 +41,9 @@ func run() {
 		msg, err := consumer.ReadMessage(-1)
 
 		if err == nil {
-			fmt.Printf("Message on %s: %s\n", msg.TopicPartition, string(msg.Value))
+			log.Printf("Message on %s: %s\n", msg.TopicPartition, string(msg.Value))
 		} else if !err.(kafka.Error).IsTimeout() {
-			fmt.Printf("Consumer error: %v (%v)\n", err, msg)
+			log.Printf("Consumer error: %v (%v)\n", err, msg)
 		}
 	}
 }

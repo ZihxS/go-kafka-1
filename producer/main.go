@@ -46,9 +46,9 @@ func run() {
 			switch event := events.(type) {
 			case *kafka.Message:
 				if event.TopicPartition.Error != nil {
-					fmt.Printf("Delivery failed: %v\n", event.TopicPartition)
+					log.Printf("Delivery failed: %v\n", event.TopicPartition)
 				} else {
-					fmt.Printf("Delivered message to %v\n", event.TopicPartition)
+					log.Printf("Delivered message to %v\n", event.TopicPartition)
 				}
 			}
 		}
