@@ -15,13 +15,13 @@ import (
 func produce(wg *sync.WaitGroup, producer *kafka.Producer, topic string, delay time.Duration, amount int) {
 	defer wg.Done()
 	for i := 1; i <= amount; i++ {
-		go func(topic string, i int) {
+		go func() {
 			producer.Produce(&kafka.Message{
 				TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
 				Key:            []byte(fmt.Sprintf("%v-%v", topic, i)),
 				Value:          []byte(fmt.Sprintf("from producer to %v: %v.", topic, i)),
 			}, nil)
-		}(topic, i)
+		}()
 		time.Sleep(delay)
 	}
 }
@@ -67,11 +67,9 @@ func run() {
 func main() {
 	exitChan := make(chan os.Signal, 1)
 	signal.Notify(exitChan, os.Interrupt, syscall.SIGTERM, syscall.SIGINT)
+	go run()
 
-	go func() {
-		run()
-	}()
-
+	log.Println("Process Done. To Exit Please Press CTRL+C.")
 	<-exitChan
 
 	fmt.Println("")

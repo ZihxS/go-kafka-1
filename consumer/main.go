@@ -51,11 +51,9 @@ func run() {
 func main() {
 	exitChan := make(chan os.Signal, 1)
 	signal.Notify(exitChan, os.Interrupt, syscall.SIGTERM, syscall.SIGINT)
+	go run()
 
-	go func() {
-		run()
-	}()
-
+	log.Printf("Waiting For Messages. To Exit Please Press CTRL+C.\n")
 	<-exitChan
 
 	fmt.Println("")
