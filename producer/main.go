@@ -62,6 +62,7 @@ func run() {
 	}
 
 	wg.Wait()
+	log.Println("Process Done. To Exit Please Press CTRL+C.")
 }
 
 func main() {
@@ -69,7 +70,6 @@ func main() {
 	signal.Notify(exitChan, os.Interrupt, syscall.SIGTERM, syscall.SIGINT)
 	go run()
 
-	log.Println("Process Done. To Exit Please Press CTRL+C.")
 	<-exitChan
 
 	fmt.Println("")
